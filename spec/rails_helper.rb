@@ -7,7 +7,10 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'selenium-webdriver'
+require 'factory_bot'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -34,7 +37,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # configuration driver for system spec
-  chrome = Selenium::WebDriver::Chrome
+  chrome = Selenium::WebDriver::Chrome::Service
   chrome.driver_path = "#{::Rails.root}/spec/web_drivers/chromedriver"
 
   config.before(:each, type: :system) do

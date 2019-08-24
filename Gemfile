@@ -20,6 +20,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capybara'
   gem 'factory_bot_rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rspec-rails'
