@@ -5,11 +5,11 @@
     <form>
       <p>
         <label for="note_title">Title</label>
-        <input type="text" id="note_title" v-model="title">
+        <input type="text" id="note_title" v-model="note.title">
       </p>
       <p>
         <label for="note_body">Body</label>
-        <input type="text" id="note_body" v-model="body">
+        <input type="text" id="note_body" v-model="note.body">
       </p>
       <p>
         <button @click.prevent="create()">Submit</button>
@@ -23,8 +23,10 @@ export default {
   data() {
     return {
       message: null,
-      title: "",
-      body: ""
+      note: {
+        title: "",
+        body: ""
+      }
     };
   },
   methods: {
@@ -34,23 +36,26 @@ export default {
       if (csrf_token_dom) {
         csrf_token = csrf_token_dom.content;
       }
-      let body = {
-        title: this.title,
-        body: this.body
-      };
 
       let request = new Request("/api/v1/notes", {
         method: "POST",
         headers: {
+          "Content-type": "application/json",
           "X-CSRF-Token": csrf_token
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(this.note)
       });
 
       fetch(request)
         .then(response => response.json())
         .then(data => {
-          this.message = data.message;
+          if (data.success == true) {
+            this.message = data.message;
+            this.note.title = "";
+            this.note.body = "";
+          } else {
+            this.message = data.message;
+          }
         });
     }
   }

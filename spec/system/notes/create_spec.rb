@@ -24,6 +24,13 @@ RSpec.describe 'Create Note', type: :system, js: true do
       expect(page).to have_content 'Note has been created'
     end
 
+    it 'returns error message' do
+      fill_in :note_title, with: ''
+      fill_in :note_body, with: ''
+      click_on 'Submit'
+      expect(page).to have_content "Title can't be blank"
+    end
+
     it 'returns back to note list link' do
       expect(page).to have_link 'Back to note list'
     end

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   include AuthenticationHelper
 
   def require_login
-    redirect_to new_login_path if not_signed_in?
+    return true if signed_in?
+
+    redirect_to new_login_path
   end
 end

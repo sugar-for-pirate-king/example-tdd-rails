@@ -11,9 +11,12 @@ module Api
       end
 
       def create
-        # note = Note.new(note_params)
-        # note.save
-        render json: { message: 'Note has been created' }
+        note = Note.new(note_params)
+        if note.save
+          render json: { success: true, message: 'Note has been created' }
+        else
+          render json: { success: false, message: note.errors.full_messages.join(', ') }
+        end
       end
 
       private

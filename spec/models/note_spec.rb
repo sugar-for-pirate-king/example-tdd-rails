@@ -8,4 +8,10 @@ RSpec.describe Note, type: :model do
     note.valid?
     expect(note.errors).to be_blank
   end
+
+  it 'is invalid without title' do
+    note = build(:note, title: nil)
+    note.valid?
+    expect(note.errors[:title]).to include "can't be blank"
+  end
 end
