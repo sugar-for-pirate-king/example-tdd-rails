@@ -9,7 +9,7 @@ module Web
     def create
       user = User.find_by(email: form_params[:email])
       if user&.authenticate(form_params[:password])
-        session[:user_id] = user.id
+        sign_in(user)
         redirect_to notes_path
       else
         flash.now[:error] = 'Email or password was invalid'

@@ -5,12 +5,13 @@ require 'rails_helper'
 RSpec.describe 'User login', type: :system do
   context 'with valid params' do
     it 'redirect to dashboard' do
-      create(:user, email: 'pquest@mail.com', password: 'secret123')
+      create(:user, full_name: 'pquest', email: 'pquest@mail.com', password: 'secret123')
       visit new_login_path
       fill_in :login_form_email, with: 'pquest@mail.com'
       fill_in :login_form_password, with: 'secret123'
       click_on 'Login'
       expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Hi, pquest'
     end
   end
 
