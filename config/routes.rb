@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root 'web/welcome#index'
 
   scope :web, module: :web do
-    resource :login, only: %i[new]
+    resources :login, only: %i[new create]
     resources :users, only: %i[new create]
+    resources :notes, only: %i[index]
   end
 end

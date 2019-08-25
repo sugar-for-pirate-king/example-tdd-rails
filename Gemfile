@@ -17,14 +17,17 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
+  gem 'selenium-webdriver'
 end
 
 group :development do
-  gem 'capybara'
-  gem 'factory_bot_rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'rspec-rails'
-  gem 'selenium-webdriver'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
