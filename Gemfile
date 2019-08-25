@@ -20,6 +20,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'rack_session_access'
   gem 'rspec-rails'
   gem 'rubocop-performance'
   gem 'rubocop-rspec'

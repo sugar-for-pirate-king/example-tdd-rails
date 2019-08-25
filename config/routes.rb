@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     resources :users, only: %i[new create]
     resources :notes, only: %i[index]
   end
+
+  scope :api, module: :api do
+    scope :v1, module: :v1 do
+      resources :notes
+    end
+  end
 end

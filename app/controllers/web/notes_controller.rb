@@ -2,6 +2,8 @@
 
 module Web
   class NotesController < ApplicationController
+    before_action :require_login
+
     def index; end
   end
 end
