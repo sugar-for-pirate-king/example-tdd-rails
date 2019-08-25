@@ -16,6 +16,10 @@ module AuthenticationHelper
     true
   end
 
+  def logout
+    session[:user_id] = nil
+  end
+
   def not_signed_in?
     signed_in? ? false : true
   end

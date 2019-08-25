@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Web
-  class LoginController < ApplicationController
+  class LoginsController < ApplicationController
     def new
       @form = LoginForm.new
     end
@@ -15,6 +15,11 @@ module Web
         flash.now[:error] = 'Email or password was invalid'
         render :new
       end
+    end
+
+    def destroy
+      logout
+      redirect_to root_path
     end
 
     private
