@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   scope module: :web do
     resource :login, only: %i[new create destroy]
     resources :users, only: %i[new create]
-    resources :notes, only: %i[index]
+    resources :notes, only: %i[index new]
   end
 
-  scope :api, module: :api do
-    scope :v1, module: :v1 do
+  namespace :api do
+    namespace :v1 do
       resources :notes
     end
   end
